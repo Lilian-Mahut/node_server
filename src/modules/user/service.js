@@ -1,16 +1,8 @@
-<<<<<<< HEAD:api/modules/user/service.js
-import brcrypt from "bcrypt";
-import jwt from "jsonwebtoken";
-
-import config from "../../config/server";
-import userQueries from "./query";
-=======
 import brcrypt from 'bcrypt';
 import jwt from 'jsonwebtoken';
 
 import config from '../../config/server';
 import userQueries from './query';
->>>>>>> master:src/modules/user/service.js
 
 const userServices = {
   getAll: (req, callback) => {
@@ -71,18 +63,6 @@ const userServices = {
       payload: { success: false, message: 'Email & password missmatch' },
     };
   },
-<<<<<<< HEAD:api/modules/user/service.js
-  register: async (body) => {
-    let { name, password, email } = body
-    if (typeof email !== "string" || typeof password !== "string") {
-      return { status: 400, payload: { success: false, message: "All fields are required and must be a string type" } }
-    }
-    return brcrypt.genSalt()
-    .then(salt => brcrypt.hash(password, salt))
-    .then(hashedPassword => userQueries.register({ email, hashedPassword }))
-    .then(user => ({ status: 201, payload: { success: true, message: 'User successfully registered' } }))
-    .catch(err => ({ status: 400, payload: { success: false, message: err } }))
-=======
   register: async body => {
     let { email, password } = body;
     if (typeof email !== 'string' || typeof password !== 'string') {
@@ -106,7 +86,6 @@ const userServices = {
         status: 400,
         payload: { success: false, message: err },
       }));
->>>>>>> master:src/modules/user/service.js
   },
   getUserWithToken: async req => {
     const user = await userQueries.getUserInformationsByUserId(req.user.id);
